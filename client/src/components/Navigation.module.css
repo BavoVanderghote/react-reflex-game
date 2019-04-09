@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 0 10rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 7.5rem;
+  margin-top: 6rem;
+  background-color: var(--dark-color);
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  composes: caps from "../styles/typo.module.css";
+  composes: color-primary from "../styles/colors.module.css";
+}
+
+.credit {
+  composes: xs from "../styles/typo.module.css";
+}

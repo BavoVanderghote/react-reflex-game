@@ -1,0 +1,27 @@
+.base {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+
+  composes: button from "../styles/typo.module.css";
+
+  background-color: var(--dark-color);
+}
+
+.ready {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+
+  composes: button from "../styles/typo.module.css";
+
+  background-color: var(--primary-color);
+}
+
+.wrapper {
+  display: flex;
+  width: 55rem;
+  justify-content: space-between;
+}

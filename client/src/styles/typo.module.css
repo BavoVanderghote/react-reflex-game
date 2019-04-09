@@ -1,0 +1,54 @@
+:global(:root){
+  --font-base: 1.8rem;
+}
+
+.counter {
+  font-size: 4rem;
+  font-weight: 800;
+  composes: color-gray from "../styles/colors.module.css";
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  composes: color-primary from "../styles/colors.module.css";
+}
+
+.button {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  composes: color-gray from "../styles/colors.module.css";
+}
+
+.caps {
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  composes: color-primary from "../styles/colors.module.css";
+}
+
+.user-input {
+  font-size: 2.5rem;
+  composes: color-primary from "../styles/colors.module.css";
+}
+
+.xs {
+  composes: color-primary from "../styles/colors.module.css";
+  font-size: 1.6rem;
+}
+
+.sm {
+  composes: color-primary from "../styles/colors.module.css";
+  font-size: 1.8rem;
+}
+
+.md {
+  composes: color-primary from "../styles/colors.module.css";
+  font-size: 2rem;
+}
+
+.lg {
+  composes: color-primary from "../styles/colors.module.css";
+  font-size: 2.5rem;
+}

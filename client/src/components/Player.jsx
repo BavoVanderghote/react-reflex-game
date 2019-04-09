@@ -1,11 +1,15 @@
 import React from "react";
+import styles from "./Player.module.css";
 
-const Player = () => {
+const Player = ({ number, button }) => {
   return (
-    <>
-      <h2>Player 1</h2>
-      <p>Press Q</p>
-    </>
+    <div className={styles.wrapper}>
+      <label>
+        <h2 className={styles.label}>Player {number}</h2>
+        <input className={styles.nameInput} type="text" />
+      </label>
+      <p className={styles.copy}>Press {button}</p>
+    </div>
   );
 };
 

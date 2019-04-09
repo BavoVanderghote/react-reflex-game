@@ -1,0 +1,15 @@
+.title {
+  padding: 6rem 10rem 0 10rem;
+  composes: title from "../styles/typo.module.css";
+  width: 100%;
+}
+
+.leaderboard {
+  padding-top: 3.5rem;
+}
+
+.navigation {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,26 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr max-content 1rem max-content 1fr;
+  grid-template-areas:
+  '. counter . unit .';
+  align-items: center;
+  width: 50rem;
+}
+
+.counter {
+background-color: var(--primary-color);
+width: 24rem;
+height: 7.5rem;
+composes: counter  from "../styles/typo.module.css";
+border-radius: 1rem;
+
+display: grid;
+grid-area: counter;
+place-items: center;
+}
+
+.unit {
+composes: title from "../styles/typo.module.css";
+
+grid-area: unit;
+}

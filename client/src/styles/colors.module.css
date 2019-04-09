@@ -1,0 +1,17 @@
+:global(:root){
+  --primary-color: #FFCF69;
+  --dark-color: #202227;
+  --gray-color: #2E3137;
+}
+
+.color-primary {
+  color: var(--primary-color);
+}
+
+.color-dark {
+  color: var(--dark-color);
+}
+
+.color-gray {
+  color: var(--gray-color);
+}
