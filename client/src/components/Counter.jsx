@@ -1,13 +1,23 @@
 import React from "react";
 import styles from "./Counter.module.css";
+import { inject, observer } from "mobx-react";
 
-const Counter = () => {
-  return (
-    <div className={styles.container}>
-      <p className={styles.counter}>0,00</p>
-      <p className={styles.unit}>ms</p>
-    </div>
-  );
+const Counter = ({ store }) => {
+  if (store.isOn) {
+    return (
+      <div className={styles.container}>
+        <p className={styles.counter}>{store.timer}</p>
+        <p className={styles.unit}>ms</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.container}>
+        <p className={styles.counter}>{store.delta}</p>
+        <p className={styles.unit}>ms</p>
+      </div>
+    );
+  }
 };
 
-export default Counter;
+export default inject("store")(observer(Counter));
