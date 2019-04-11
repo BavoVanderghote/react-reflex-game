@@ -5,8 +5,9 @@ configure({ enforceActions: "observed" });
 class Store {
   start;
   interval;
+  p1 = 0;
+  p2 = 0;
   timer;
-  delta = 0;
   isOn = false;
 
   startTimer = () => {
@@ -25,18 +26,31 @@ class Store {
     this.timer = (Date.now() - this.start) / 1000;
   };
 
-  endTimer = () => {
-    this.isOn = false;
-    this.delta = (Date.now() - this.start) / 1000;
-    console.log(`${this.output} seconds`);
+  endTimer = (key, player) => {
+    console.log(key);
     clearInterval(this.interval);
+    this.isOn = false;
+    if (player === 1) {
+      if ((Date.now() - this.start) / 1000) {
+        this.p1 = (Date.now() - this.start) / 1000;
+      } else {
+        this.p1 = 0;
+      }
+    } else if (player === 2) {
+      if ((Date.now() - this.start) / 1000) {
+        this.p2 = (Date.now() - this.start) / 1000;
+      } else {
+        this.p2 = 0;
+      }
+    }
   };
 }
 
 decorate(Store, {
   start: observable,
   interval: observable,
-  delta: observable,
+  p1: observable,
+  p2: observable,
   timer: observable,
   isOn: observable,
   startTimer: action,
