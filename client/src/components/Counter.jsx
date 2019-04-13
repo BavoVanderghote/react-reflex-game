@@ -8,7 +8,7 @@ class Counter extends Component {
     this.keyDownFunction = this.keyDownFunction.bind(this);
   }
   render() {
-    if (this.props.store.isOn) {
+    if (this.props.store.timerIsOn) {
       return (
         <div className={styles.container}>
           <p className={styles.counter}>{this.props.player}</p>
