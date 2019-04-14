@@ -11,15 +11,25 @@ const Game = ({ store }) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <Player number="1" button="Q" />
-        <Player number="2" button="M" />
+        <Player
+          setNameFunction={store.setP1Name}
+          ready={store.p1Ready}
+          number="1"
+          button="Q"
+        />
+        <Player
+          setNameFunction={store.setP2Name}
+          ready={store.p2Ready}
+          number="2"
+          button="M"
+        />
       </div>
       <div className={styles.sequence}>
         <StartSequence />
       </div>
       <div className={styles.wrapper}>
-        <Counter player={store.p1} key="q" />
-        <Counter player={store.p2} key="m" />
+        <Counter playerTime={store.p1} keyCode="81" player="1" />
+        <Counter playerTime={store.p2} keyCode="77" player="2" />
       </div>
       <Navigation />
     </>
