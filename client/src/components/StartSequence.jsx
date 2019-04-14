@@ -6,9 +6,7 @@ const StartSequence = ({ store }) => {
   if (store.ready && !store.set && !store.go && !store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.red} onClick={store.startSequence}>
-          Ready
-        </button>
+        <button className={styles.red}>Ready</button>
         <button className={styles.base}>Set</button>
         <button className={styles.base}>GO</button>
       </div>
@@ -16,9 +14,7 @@ const StartSequence = ({ store }) => {
   } else if (store.ready && store.set && !store.go && !store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.red} onClick={store.startSequence}>
-          Ready
-        </button>
+        <button className={styles.red}>Ready</button>
         <button className={styles.red}>Set</button>
         <button className={styles.base}>GO</button>
       </div>
@@ -26,9 +22,7 @@ const StartSequence = ({ store }) => {
   } else if (store.ready && store.set && store.go && store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.green} onClick={store.startSequence}>
-          Ready
-        </button>
+        <button className={styles.green}>Ready</button>
         <button className={styles.green}>Set</button>
         <button className={styles.green}>GO</button>
       </div>
@@ -36,9 +30,7 @@ const StartSequence = ({ store }) => {
   } else {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.ready} onClick={store.startSequence}>
-          Ready
-        </button>
+        <button className={styles.base}>Ready</button>
         <button className={styles.base}>Set</button>
         <button className={styles.base}>GO</button>
       </div>
