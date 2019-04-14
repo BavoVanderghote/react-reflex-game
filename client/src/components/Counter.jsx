@@ -11,38 +11,41 @@ class Counter extends Component {
     if (this.props.store.timerIsOn) {
       return (
         <div className={styles.container}>
-          <p className={styles.counter}>{this.props.player}</p>
+          <p className={styles.counter}>{this.props.playerTime}</p>
           <p className={styles.unit}>s</p>
         </div>
       );
     } else {
       return (
         <div className={styles.container}>
-          <p className={styles.counter}>{this.props.player}</p>
+          <p className={styles.counter}>{this.props.playerTime}</p>
           <p className={styles.unit}>s</p>
         </div>
       );
     }
   }
-  keyDownFunction(e) {
-    if (e.keyCode === 81) {
+  keyDownFunction(e, key, player) {
+    if (e.keyCode === parseInt(key)) {
       //q
-      console.log(`q pressed`);
-      this.props.store.endTimer(`q`, 1);
-    }
-    if (e.keyCode === 77) {
-      //m
-      console.log(`m pressed`);
-      this.props.store.endTimer(`m`, 2);
+      console.log(`${key} pressed by player ${player}`);
+
+      this.props.store.endTimer(key, parseInt(player));
     }
   }
   componentDidMount() {
-    document.addEventListener("keydown", this.keyDownFunction, false);
-    console.log(`did mount ${this.props.player}`);
+    const key = this.props.keyCode;
+    const player = this.props.player;
+
+    document.addEventListener(
+      "keydown",
+      e => this.keyDownFunction(e, key, player),
+      false
+    );
   }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.keyDownFunction, false);
   }
+  sendDataToStore = (key, player) => {};
 }
 
 export default inject("store")(observer(Counter));
