@@ -38,6 +38,10 @@
   padding: 1rem 3rem;
 }
 
+.button:hover {
+  background-color: var(--darker-color);
+}
+
 .buttonPressed {
   composes: caps from "../styles/typo.module.css";
   composes: color-gray from "../styles/colors.module.css";
