@@ -7,8 +7,8 @@ configure({ enforceActions: "observed" });
 class Store {
   start;
   interval;
-  p1Name = `player 1`;
-  p2Name = `player 2`;
+  p1Name = `Player 1`;
+  p2Name = `Player 2`;
   p1Ready = false;
   p2Ready = false;
   p1 = 0;
@@ -86,15 +86,15 @@ class Store {
   };
 
   setP1Name = name => {
-    console.log(`player 1 ready`);
-    this.p1Name = name;
-    this.p1Ready = true;
+    name ? (this.p1Name = name) : (this.p1Name = `Player 1`);
+    this.p1Ready = !this.p1Ready;
+    console.log(`${this.p1Name} ready ${this.p1Ready}`);
   };
 
   setP2Name = name => {
-    console.log(`player 2 ready`);
-    this.p2Name = name;
-    this.p2Ready = true;
+    name ? (this.p2Name = name) : (this.p2Name = `Player 2`);
+    this.p2Ready = !this.p2Ready;
+    console.log(`${this.p2Name} ready ${this.p2Ready}`);
   };
 
   setP2 = () => {
@@ -141,29 +141,35 @@ class Store {
         `[winner] ${this.winner.name} took ${this.winner.time} seconds`
       );
       console.log(`[loser] ${this.loser.name} took ${this.loser.time} seconds`);
-      // this.addScore({ winner: this.winner, loser: this.loser });
+      this.addScore({ winner: this.winner, loser: this.loser });
     }
   };
 
   //APi
 
-  // addScore = data => {
-  //   console.log(`addScore`);
+  addScore = data => {
+    console.log(`addScore`);
+    console.log(
+      data.winner.name,
+      data.winner.time,
+      data.loser.name,
+      data.loser.time
+    );
 
-  //   const newScore = new Score({
-  //     winner: data.winner.name,
-  //     loser: data.loser.name,
-  //     winnerTime: data.winner.time,
-  //     loserTime: data.loser.time
-  //   });
-  //   console.log(`toe te voegen score ${newScore}`);
-  // newScore.updateFromServer(data);
+    //   const newScore = new Score({
+    //     winner: data.winner.name,
+    //     loser: data.loser.name,
+    //     winnerTime: data.winner.time,
+    //     loserTime: data.loser.time
+    //   });
+    //   console.log(`toe te voegen score ${newScore}`);
+    // newScore.updateFromServer(data);
 
-  // this.scores.push(newScore);
-  // this.api
-  //   .create(newScore)
-  //   .then(scoreValues => newScore.updateFromServer(scoreValues));
-  // };
+    // this.scores.push(newScore);
+    // this.api
+    //   .create(newScore)
+    //   .then(scoreValues => newScore.updateFromServer(scoreValues));
+  };
 
   // _addBook = values => {
   //   const score = new Score(this.rootStore);
