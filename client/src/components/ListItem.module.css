@@ -21,6 +21,7 @@
 }
 
 .rematch {
+  border: 0;
   composes: md from "../styles/typo.module.css";
   width: 18.6rem;
   height: 4.2rem;
