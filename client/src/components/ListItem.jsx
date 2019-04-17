@@ -1,21 +1,25 @@
 import React from "react";
 import styles from "./ListItem.module.css";
+import { observer, inject } from "mobx-react";
 
-const ListItem = () => {
+const ListItem = ({ score, onDelete }) => {
+  // console.log(score);
+
   return (
     <div className={styles.container}>
       <div className={styles.winner}>
-        <p>Player 1</p>
-        <p>0,34 ms</p>
+        <p>{score.winner}</p>
+        <p>{score.winnerTime} ms</p>
       </div>
       <div className={styles.loser}>
-        <p>Player 2</p>
-        <p>0,37 ms</p>
+        <p>{score.loser}</p>
+        <p>{score.loserTime} ms</p>
       </div>
-      <button className={styles.delete}>Delete</button>
+      <button className={styles.delete} onClick={() => onDelete(score)}>
+        Delete
+      </button>
       <button className={styles.rematch}>Rematch</button>
     </div>
   );
 };
-
-export default ListItem;
+export default inject("store")(observer(ListItem));
