@@ -1,5 +1,5 @@
-import { decorate, configure, observable, action } from "mobx";
-// import Score from "../models/Score";
+import { decorate, configure, observable, action, runInAction } from "mobx";
+import Score from "../models/Score";
 import Api from "../api";
 
 configure({ enforceActions: "observed" });
@@ -19,7 +19,7 @@ class Store {
   p2Finished = false;
 
   timerIsOn = false;
-  gameIsFinished = false;
+  gameIsStarted = false;
   winner = {};
   loser = {};
 
@@ -27,9 +27,20 @@ class Store {
   set = false;
   go = false;
 
+  setSetTimeout;
+  startTimeout;
+
+  scores = [];
+
   constructor() {
-    this.api = new Api("books");
+    this.api = new Api("score");
+    this.getAll();
+    console.log(this.scores);
   }
+
+  getAll = () => {
+    this.api.getAll().then(d => d.forEach(this._addScore));
+  };
 
   //GAME
 
@@ -40,7 +51,25 @@ class Store {
   };
 
   startSequence = () => {
-    this.gameIsFinished = false;
+    this.timerIsOn = false;
+    this.gameIsStarted = true;
+
+    if (this.p1Interval) {
+      clearInterval(this.p1Interval);
+    }
+
+    if (this.p2Interval) {
+      clearInterval(this.p2Interval);
+    }
+
+    if (this.setTimeout) {
+      clearTimeout(this.setSetTimeout);
+    }
+
+    if (this.startTimeout) {
+      clearTimeout(this.startTimeout);
+    }
+
     this.p1Finished = false;
     this.p2Finished = false;
 
@@ -56,8 +85,11 @@ class Store {
     console.log(`ready`);
 
     this.ready = true;
-    setTimeout(this.setSet, 1000);
-    setTimeout(this.startTimer, Math.random() * (5000 - 2000) + 2000);
+    this.setSetTimeout = setTimeout(this.setSet, 1000);
+    this.startTimeout = setTimeout(
+      this.startTimer,
+      Math.random() * (5000 - 2000) + 2000
+    );
   };
 
   setSet = () => {
@@ -104,6 +136,8 @@ class Store {
   };
 
   endTimer = (key, player) => {
+    console.log(this.gameIsStarted, this.timerIsOn);
+
     if (player === 1 && this.timerIsOn) {
       clearInterval(this.p1Interval);
       this.p1Finished = true;
@@ -126,17 +160,24 @@ class Store {
         this.loser.name = this.p2Name;
         this.loser.time = this.p2;
       }
-    } else {
+    } else if (this.gameIsStarted && !this.timerIsOn) {
       console.log(`player ${player} pressed too early`);
+      player === 1 ? (this.p1 = `Too early`) : (this.p2 = `Too early`);
       //pressed too early code
+      this.timerIsOn = false;
+      this.p1Ready = false;
+      this.p2Ready = false;
+      this.p1Finished = true;
+      this.p2Finished = true;
+
+      this.startSequence();
     }
     if (this.p1Finished && this.p2Finished && this.timerIsOn) {
       this.timerIsOn = false;
-      this.gameIsFinished = true;
+      this.gameIsStarted = false;
       this.p1Ready = false;
       this.p2Ready = false;
 
-      console.log(`game finisched? ${this.gameIsFinished}`);
       console.log(
         `[winner] ${this.winner.name} took ${this.winner.time} seconds`
       );
@@ -148,34 +189,52 @@ class Store {
   //APi
 
   addScore = data => {
-    console.log(`addScore`);
-    console.log(
+    // console.log(`addScore`);
+    // console.log(
+    //   data.winner.name,
+    //   data.winner.time,
+    //   data.loser.name,
+    //   data.loser.time
+    // );
+
+    const newScore = new Score(
       data.winner.name,
-      data.winner.time,
       data.loser.name,
+      data.winner.time,
       data.loser.time
     );
 
-    //   const newScore = new Score({
-    //     winner: data.winner.name,
-    //     loser: data.loser.name,
-    //     winnerTime: data.winner.time,
-    //     loserTime: data.loser.time
-    //   });
-    //   console.log(`toe te voegen score ${newScore}`);
+    // console.log(newScore.values);
+    // const newScore = new Score();
     // newScore.updateFromServer(data);
 
-    // this.scores.push(newScore);
-    // this.api
-    //   .create(newScore)
-    //   .then(scoreValues => newScore.updateFromServer(scoreValues));
+    this.scores.push(newScore);
+
+    this.api.create(newScore).then(scoreValues => {
+      newScore.updateFromServer(scoreValues);
+      // console.log(newScore);
+    });
   };
 
-  // _addBook = values => {
-  //   const score = new Score(this.rootStore);
-  //   score.updateFromServer(values);
-  //   runInAction(() => this.books.push(score));
-  // };
+  _addScore = values => {
+    console.log(values.values);
+
+    const score = new Score(
+      values.winner,
+      values.loser,
+      values.winnerTime,
+      values.loserTime,
+      values._id
+    );
+    runInAction(() => this.scores.push(score));
+  };
+
+  deleteScore = score => {
+    console.log(score);
+
+    this.scores.remove(score);
+    this.api.delete(score);
+  };
 }
 
 decorate(Store, {
@@ -193,12 +252,13 @@ decorate(Store, {
   p2Finished: observable,
   timer: observable,
   timerIsOn: observable,
-  gameIsFinished: observable,
+  gameIsStarted: observable,
   winner: observable,
   loser: observable,
   ready: observable,
   set: observable,
   go: observable,
+  scores: observable,
   startTimer: action,
   endTimer: action,
   setP1: action,
@@ -207,7 +267,9 @@ decorate(Store, {
   setSet: action,
   setGo: action,
   setP1Name: action,
-  setP2Name: action
+  setP2Name: action,
+  addScore: action,
+  deleteScore: action
 });
 
 const store = new Store();
