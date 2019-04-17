@@ -1,12 +1,12 @@
 import uuid from "uuid";
-import { decorate, observable, action, computed } from "mobx";
+import { decorate, observable, computed, action } from "mobx";
 class Score {
   constructor(winner, loser, winnerTime, loserTime, id = uuid.v4()) {
-    this.id = id;
     this.winner = winner;
     this.loser = loser;
     this.winnerTime = winnerTime;
     this.loserTime = loserTime;
+    this.id = id;
   }
 
   setId = id => (this.id = id);
@@ -29,7 +29,7 @@ class Score {
     this.setWinner(values.winner);
     this.setLoser(values.loser);
     this.setWinnerTime(values.winnerTime);
-    this.setLoser(values.loserTime);
+    this.setLoserTime(values.loserTime);
   };
 }
 
@@ -40,10 +40,11 @@ decorate(Score, {
   winnerTime: observable,
   loserTime: observable,
   setId: action,
-  setTitle: action,
-  setAuthorId: action,
-  values: computed,
-  author: computed
+  setWinner: action,
+  setLoser: action,
+  setWinnerTime: action,
+  setLoserTime: action,
+  values: computed
 });
 
 export default Score;
