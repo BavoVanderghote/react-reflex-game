@@ -1,5 +1,4 @@
 class Api {
-
   constructor(entity) {
     this.entity = entity;
   }
