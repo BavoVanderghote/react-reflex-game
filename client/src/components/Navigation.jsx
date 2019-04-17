@@ -6,9 +6,14 @@ const Navigation = () => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.credit}>&copy; Bavo Vanderghote 2019</p>
-      <Link className={styles.link} to="/leaderboard">
-        leaderboard
-      </Link>
+      <div>
+        <Link className={styles.link} to="/">
+          game
+        </Link>
+        <Link className={styles.link} to="/leaderboard">
+          leaderboard
+        </Link>
+      </div>
     </div>
   );
 };

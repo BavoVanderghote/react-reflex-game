@@ -7,12 +7,15 @@
   margin-top: 6rem;
   background-color: var(--dark-color);
   align-items: center;
+  position: absolute;
+  bottom: 0;
 }
 
 .link {
   text-decoration: none;
   composes: caps from "../styles/typo.module.css";
   composes: color-primary from "../styles/colors.module.css";
+  padding-left: 3rem;
 }
 
 .credit {
