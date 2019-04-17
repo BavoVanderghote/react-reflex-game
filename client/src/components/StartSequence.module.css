@@ -3,6 +3,9 @@
   height: 15rem;
   border-radius: 50%;
   border: 0;
+  text-align: center;
+  display: grid;
+  place-items: center;
 
   composes: button from "../styles/typo.module.css";
 
@@ -14,6 +17,8 @@
   height: 15rem;
   border-radius: 50%;
   border: 0;
+  display: grid;
+  place-items: center;
 
   composes: button from "../styles/typo.module.css";
 
@@ -31,6 +36,8 @@
   height: 15rem;
   border-radius: 50%;
   border: 0;
+  display: grid;
+  place-items: center;
 
   composes: button from "../styles/typo.module.css";
 
@@ -42,6 +49,8 @@
   height: 15rem;
   border-radius: 50%;
   border: 0;
+  display: grid;
+  place-items: center;
 
   composes: button from "../styles/typo.module.css";
 

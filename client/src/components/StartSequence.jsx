@@ -6,33 +6,57 @@ const StartSequence = ({ store }) => {
   if (store.ready && !store.set && !store.go && !store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.red}>Ready</button>
-        <button className={styles.base}>Set</button>
-        <button className={styles.base}>GO</button>
+        <div className={styles.red}>
+          <p>Ready</p>
+        </div>
+        <div className={styles.base}>
+          <p>Set</p>
+        </div>
+        <div className={styles.base}>
+          <p>GO</p>
+        </div>
       </div>
     );
   } else if (store.ready && store.set && !store.go && !store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.red}>Ready</button>
-        <button className={styles.red}>Set</button>
-        <button className={styles.base}>GO</button>
+        <div className={styles.red}>
+          <p>Ready</p>
+        </div>
+        <div className={styles.red}>
+          <p>Set</p>
+        </div>
+        <div className={styles.base}>
+          <p>GO</p>
+        </div>
       </div>
     );
   } else if (store.ready && store.set && store.go && store.timerIsOn) {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.green}>Ready</button>
-        <button className={styles.green}>Set</button>
-        <button className={styles.green}>GO</button>
+        <div className={styles.green}>
+          <p>Ready</p>
+        </div>
+        <div className={styles.green}>
+          <p>Set</p>
+        </div>
+        <div className={styles.green}>
+          <p>GO</p>
+        </div>
       </div>
     );
   } else {
     return (
       <div className={styles.wrapper}>
-        <button className={styles.base}>Ready</button>
-        <button className={styles.base}>Set</button>
-        <button className={styles.base}>GO</button>
+        <div className={styles.base}>
+          <p>Ready</p>
+        </div>
+        <div className={styles.base}>
+          <p>Set</p>
+        </div>
+        <div className={styles.base}>
+          <p>GO</p>
+        </div>
       </div>
     );
   }
