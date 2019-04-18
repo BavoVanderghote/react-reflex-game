@@ -7,8 +7,8 @@ configure({ enforceActions: "observed" });
 class Store {
   start;
   interval;
-  p1Name = `Player 1`;
-  p2Name = `Player 2`;
+  p1Name = ``;
+  p2Name = ``;
   p1Ready = false;
   p2Ready = false;
   p1 = 0;
@@ -23,6 +23,8 @@ class Store {
   winner = {};
   loser = {};
 
+  scoreToUpdate = {};
+
   ready = false;
   set = false;
   go = false;
@@ -35,7 +37,6 @@ class Store {
   constructor() {
     this.api = new Api("score");
     this.getAll();
-    console.log(this.scores);
   }
 
   getAll = () => {
@@ -118,15 +119,29 @@ class Store {
   };
 
   setP1Name = name => {
+    this.p1Name === name
+      ? console.log(`gelijke naam`)
+      : (this.scoreToUpdate = {});
     name ? (this.p1Name = name) : (this.p1Name = `Player 1`);
     this.p1Ready = !this.p1Ready;
-    console.log(`${this.p1Name} ready ${this.p1Ready}`);
+    console.log(
+      `${this.p1Name} ready ${this.p1Ready}, ${
+        Object.entries(this.scoreToUpdate).length
+      }`
+    );
   };
 
   setP2Name = name => {
+    this.p2Name === name
+      ? console.log(`gelijke naam`)
+      : (this.scoreToUpdate = {});
     name ? (this.p2Name = name) : (this.p2Name = `Player 2`);
     this.p2Ready = !this.p2Ready;
-    console.log(`${this.p2Name} ready ${this.p2Ready}`);
+    console.log(
+      `${this.p2Name} ready ${this.p2Ready}, ${
+        Object.entries(this.scoreToUpdate).length
+      }`
+    );
   };
 
   setP2 = () => {
@@ -164,13 +179,7 @@ class Store {
       console.log(`player ${player} pressed too early`);
       player === 1 ? (this.p1 = `Too early`) : (this.p2 = `Too early`);
       //pressed too early code
-      this.timerIsOn = false;
-      this.p1Ready = false;
-      this.p2Ready = false;
-      this.p1Finished = true;
-      this.p2Finished = true;
-
-      this.startSequence();
+      this.restartGame();
     }
     if (this.p1Finished && this.p2Finished && this.timerIsOn) {
       this.timerIsOn = false;
@@ -182,8 +191,38 @@ class Store {
         `[winner] ${this.winner.name} took ${this.winner.time} seconds`
       );
       console.log(`[loser] ${this.loser.name} took ${this.loser.time} seconds`);
-      this.addScore({ winner: this.winner, loser: this.loser });
+
+      Object.entries(this.scoreToUpdate).length !== 0
+        ? this.updateScore(this.scoreToUpdate) // nog niet geupdatet
+        : this.addScore({ winner: this.winner, loser: this.loser });
     }
+  };
+
+  restartGame = () => {
+    this.timerIsOn = false;
+    this.p1Ready = false;
+    this.p2Ready = false;
+    this.p1Finished = true;
+    this.p2Finished = true;
+
+    this.startSequence();
+  };
+
+  rematch = score => {
+    this.p1Name = score.winner;
+    this.p2Name = score.loser;
+    this.p1Ready = false;
+    this.p2Ready = false;
+
+    this.scoreToUpdate = score;
+    console.log(this.scoreToUpdate);
+
+    console.log(this.scores.find(this.exists));
+    // this.restartGame();
+  };
+
+  exists = score => {
+    return score.winner === this.p1Name && score.loser === this.p2Name;
   };
 
   //APi
@@ -217,8 +256,6 @@ class Store {
   };
 
   _addScore = values => {
-    console.log(values.values);
-
     const score = new Score(
       values.winner,
       values.loser,
@@ -230,10 +267,14 @@ class Store {
   };
 
   deleteScore = score => {
-    console.log(score);
-
     this.scores.remove(score);
     this.api.delete(score);
+  };
+
+  updateScore = score => {
+    this.api
+      .update(score)
+      .then(scoreValues => score.updateFromServer(scoreValues));
   };
 }
 
