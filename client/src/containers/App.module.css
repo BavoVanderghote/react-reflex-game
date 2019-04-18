@@ -1,3 +1,8 @@
 .layout {
   composes: layout from "../styles/layout.module.css";
 }
+
+.title {
+  composes: banner from "../styles/typo.module.css";
+  padding-bottom: 1rem;
+}

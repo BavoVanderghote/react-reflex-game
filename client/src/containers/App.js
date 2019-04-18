@@ -12,7 +12,7 @@ class App extends Component {
       // <main className={styles.layout}>
       <>
         <header>
-          <h1>Reaction game</h1>
+          <h1 className={styles.title}>Reaction game</h1>
         </header>
         <main className={styles.layout}>
           <Switch>
