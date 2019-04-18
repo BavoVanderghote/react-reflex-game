@@ -16,12 +16,14 @@ const Game = ({ store }) => {
           ready={store.p1Ready}
           number="1"
           button="Q"
+          name={store.p1Name}
         />
         <Player
           setNameFunction={store.setP2Name}
           ready={store.p2Ready}
           number="2"
           button="M"
+          name={store.p2Name}
         />
       </div>
       <div className={styles.sequence}>
