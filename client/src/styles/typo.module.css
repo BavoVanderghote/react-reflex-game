@@ -2,6 +2,14 @@
   --font-base: 1.8rem;
 }
 
+.banner {
+  font-size: 5rem;
+  font-weight: 800; 
+  text-transform: uppercase;
+  composes: color-gray from "../styles/colors.module.css";
+
+}
+
 .counter {
   font-size: 4rem;
   font-weight: 800;
