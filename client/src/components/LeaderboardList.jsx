@@ -14,7 +14,7 @@ const LeaderboardList = ({ store }) => {
             <ListItem
               key={score.id}
               score={score}
-              // onUpdate={store.updateScore}
+              onRematch={store.rematch}
               onDelete={store.deleteScore}
             />
           ))}

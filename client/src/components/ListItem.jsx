@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ListItem.module.css";
 import { observer, inject } from "mobx-react";
 
-const ListItem = ({ score, onDelete }) => {
+const ListItem = ({ score, onDelete, onRematch }) => {
   // console.log(score);
 
   return (
@@ -18,7 +18,9 @@ const ListItem = ({ score, onDelete }) => {
       <button className={styles.delete} onClick={() => onDelete(score)}>
         Delete
       </button>
-      <button className={styles.rematch}>Rematch</button>
+      <button className={styles.rematch} onClick={() => onRematch(score)}>
+        Rematch
+      </button>
     </div>
   );
 };
