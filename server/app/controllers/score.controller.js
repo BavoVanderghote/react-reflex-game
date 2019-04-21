@@ -1,17 +1,17 @@
-const Score = require("../models/score.model.js");
+const Score = require('../models/score.model.js');
 
 exports.create = (req, res) => {
   if (!req.body.winner) {
-    return res.status(500).send({ err: "winner can not be empty" });
+    return res.status(500).send({err: 'winner can not be empty'});
   }
   if (!req.body.loser) {
-    return res.status(500).send({ err: "loser can not be empty" });
+    return res.status(500).send({err: 'loser can not be empty'});
   }
   if (!req.body.winnerTime) {
-    return res.status(500).send({ err: "winnerTime can not be empty" });
+    return res.status(500).send({err: 'winnerTime can not be empty'});
   }
   if (!req.body.loserTime) {
-    return res.status(500).send({ err: "loserTime can not be empty" });
+    return res.status(500).send({err: 'loserTime can not be empty'});
   }
 
   const score = new Score({
@@ -25,7 +25,7 @@ exports.create = (req, res) => {
     .save()
     .then(score => res.send(score))
     .catch(err => {
-      res.status(500).send({ error: err.score || "Error" });
+      res.status(500).send({error: err.score || 'Error'});
     });
 };
 
@@ -34,7 +34,7 @@ exports.findAll = async (req, res) => {
     const scores = await Score.find();
     res.send(scores);
   } catch (err) {
-    res.status(500).send({ err: err.score || "Error" });
+    res.status(500).send({err: err.score || 'Error'});
   }
 };
 
@@ -47,11 +47,11 @@ exports.findOne = async (req, res) => {
     if (score) {
       res.send(score);
     } else {
-      res.status(404).send("No score found");
+      res.status(404).send('No score found');
     }
   } catch (err) {
-    if (err.kind === "ObjectId") {
-      return res.status(500).send("Geen geldig ID");
+    if (err.kind === 'ObjectId') {
+      return res.status(500).send('Geen geldig ID');
     }
     return res.status(500).send(err);
   }
@@ -59,16 +59,16 @@ exports.findOne = async (req, res) => {
 
 exports.update = async (req, res) => {
   if (!req.body.winner) {
-    return res.status(500).send({ err: "winner can not be empty" });
+    return res.status(500).send({err: 'winner can not be empty'});
   }
   if (!req.body.loser) {
-    return res.status(500).send({ err: "loser can not be empty" });
+    return res.status(500).send({err: 'loser can not be empty'});
   }
   if (!req.body.winnerTime) {
-    return res.status(500).send({ err: "winnerTime can not be empty" });
+    return res.status(500).send({err: 'winnerTime can not be empty'});
   }
   if (!req.body.loserTime) {
-    return res.status(500).send({ err: "loserTime can not be empty" });
+    return res.status(500).send({err: 'loserTime can not be empty'});
   }
 
   try {
@@ -78,7 +78,9 @@ exports.update = async (req, res) => {
         // userId: req.authUserId
       },
       {
+        winner: req.body.winner,
         winnerTime: req.body.winnerTime,
+        loser: req.body.loser,
         loserTime: req.body.loserTime
       },
       {
@@ -87,12 +89,12 @@ exports.update = async (req, res) => {
     );
 
     if (!score) {
-      return res.status(404).send("No score found");
+      return res.status(404).send('No score found');
     }
     res.send(score);
   } catch (err) {
-    if (err.kind === "ObjectId") {
-      return res.status(417).send("Geen geldig ID");
+    if (err.kind === 'ObjectId') {
+      return res.status(417).send('Geen geldig ID');
     }
     return res.status(500).send(err);
   }
@@ -105,12 +107,12 @@ exports.delete = async (req, res) => {
       // userId: req.authUserId
     });
     if (!score) {
-      return res.status(404).send("No score found");
+      return res.status(404).send('No score found');
     }
     res.send(score);
   } catch (err) {
-    if (err.kind === "ObjectId") {
-      return res.status(417).send("Geen geldig ID");
+    if (err.kind === 'ObjectId') {
+      return res.status(417).send('Geen geldig ID');
     }
     return res.status(500).send(err);
   }
