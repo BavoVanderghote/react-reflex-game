@@ -193,24 +193,26 @@ class Store {
       console.log(`[loser] ${this.loser.name} took ${this.loser.time} seconds`);
 
       if (Object.entries(this.scoreToUpdate).length !== 0) {
-        // console.log(
-        //   this.winner.name,
-        //   this.winner.time,
-        //   this.loser.name,
-        //   this.loser.time
-        // );
-
-        this.scoreToUpdate.winner = this.winner.name;
-        console.log(`naam van de winner`);
-        console.log(this.winner.name);
-        console.log(this.scoreToUpdate.winner);
-        // winner naam is nog steeds de naam van de verliezer in het object
-        console.log(this.scoreToUpdate);
-
+        console.log(
+          `score updaten: meegekregen loser = ${
+            this.loser.name
+          }, oorspronkelijke loser = ${this.scoreToUpdate.loser}`
+        );
+        // console.log(`score to update updaten`);
         this.scoreToUpdate.loser = this.loser.name;
         this.scoreToUpdate.winnerTime = this.winner.time;
         this.scoreToUpdate.loserTime = this.loser.time;
-        // console.log(this.scoreToUpdate);
+        this.scoreToUpdate.winner = this.winner.name;
+        // console.log(
+        //   `oorspronkelijke naam van de winner = ${
+        //     this.winner.name
+        //   }, current winner = ${this.scoreToUpdate.winner}`
+        // );
+        // console.log(
+        //   `oorspronkelijke naam van de loser = ${
+        //     this.loser.name
+        //   }, current loser = ${this.scoreToUpdate.loser}`
+        // );
 
         this.updateScore(this.scoreToUpdate);
       } else {
@@ -293,10 +295,12 @@ class Store {
   };
 
   updateScore = score => {
-    console.log(score);
+    console.log(`UPDATE SCORE`);
+    console.log(score.loser);
 
     this.api.update(score).then(scoreValues => {
       score.updateFromServer(scoreValues);
+      console.log(scoreValues.loser);
     });
   };
 }
