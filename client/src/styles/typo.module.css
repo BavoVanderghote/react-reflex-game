@@ -36,6 +36,11 @@
   composes: color-primary from "../styles/colors.module.css";
 }
 
+.form-label {
+  font-size: 2rem;
+  composes: color-primary from "../styles/colors.module.css";
+}
+
 .user-input {
   font-size: 2.5rem;
   composes: color-primary from "../styles/colors.module.css";
