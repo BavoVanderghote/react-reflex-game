@@ -11,7 +11,7 @@
 background-color: var(--primary-color);
 width: 24rem;
 height: 7.5rem;
-composes: counter  from "../styles/typo.module.css";
+composes: counter  from "../../styles/typo.module.css";
 border-radius: 1rem;
 
 display: grid;
@@ -20,7 +20,7 @@ place-items: center;
 }
 
 .unit {
-composes: title from "../styles/typo.module.css";
+composes: title from "../../styles/typo.module.css";
 
 grid-area: unit;
 }

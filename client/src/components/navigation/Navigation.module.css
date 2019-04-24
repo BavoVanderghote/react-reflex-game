@@ -13,11 +13,11 @@
 
 .link {
   text-decoration: none;
-  composes: caps from "../styles/typo.module.css";
-  composes: color-primary from "../styles/colors.module.css";
+  composes: caps from "../../styles/typo.module.css";
+  composes: color-primary from "../../styles/colors.module.css";
   padding-left: 3rem;
 }
 
 .credit {
-  composes: xs from "../styles/typo.module.css";
+  composes: xs from "../../styles/typo.module.css";
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Leaderboard.module.css";
 
-import LeaderboardList from "../components/LeaderboardList";
-import Navigation from "../components/Navigation";
+import LeaderboardList from "../components/leaderboard/LeaderboardList";
+import Navigation from "../components/navigation/Navigation";
 
 const Leaderboard = () => {
   return (

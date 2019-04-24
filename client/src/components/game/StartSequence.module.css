@@ -7,7 +7,7 @@
   display: grid;
   place-items: center;
 
-  composes: button from "../styles/typo.module.css";
+  composes: button from "../../styles/typo.module.css";
 
   background-color: var(--dark-color);
 }
@@ -20,7 +20,7 @@
   display: grid;
   place-items: center;
 
-  composes: button from "../styles/typo.module.css";
+  composes: button from "../../styles/typo.module.css";
 
   background-color: var(--primary-color);
 }
@@ -39,7 +39,7 @@
   display: grid;
   place-items: center;
 
-  composes: button from "../styles/typo.module.css";
+  composes: button from "../../styles/typo.module.css";
 
   background-color: var(--red-color);
 }
@@ -52,7 +52,7 @@
   display: grid;
   place-items: center;
 
-  composes: button from "../styles/typo.module.css";
+  composes: button from "../../styles/typo.module.css";
 
   background-color: var(--green-color);
 }

@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Game.module.css";
 import { inject, observer } from "mobx-react";
 
-import Player from "../components/Player";
-import StartSequence from "../components/StartSequence";
-import Counter from "../components/Counter";
-import Navigation from "../components/Navigation";
+import Player from "../components/game/Player";
+import StartSequence from "../components/game/StartSequence";
+import Counter from "../components/game/Counter";
+import Navigation from "../components/navigation/Navigation";
 
 const Game = ({ store }) => {
   return (
