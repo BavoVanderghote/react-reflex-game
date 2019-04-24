@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { inject } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import { ROUTES } from "../../constants";
-
+import styles from "./Register.module.css";
 class Register extends Component {
   constructor() {
     super();
@@ -28,12 +28,13 @@ class Register extends Component {
   render() {
     const { email, pwd, pwd2, name } = this.state;
     return (
-      <>
-        <h2>Register</h2>
+      <div className={styles.container}>
+        <h2 className={styles.label}>first time, human.</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">
+          <label className={styles.formLabel} htmlFor="email">
             name
             <input
+              className={styles.input}
               type="test"
               name="name"
               id="name="
@@ -41,9 +42,10 @@ class Register extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <label htmlFor="email">
+          <label className={styles.formLabel} htmlFor="email">
             email
             <input
+              className={styles.input}
               type="email"
               name="email"
               id="email="
@@ -51,9 +53,10 @@ class Register extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <label htmlFor="username">
+          <label className={styles.formLabel} htmlFor="username">
             password
             <input
+              className={styles.input}
               type="password"
               name="pwd"
               id="pwd"
@@ -61,9 +64,10 @@ class Register extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <label htmlFor="username">
+          <label className={styles.formLabel} htmlFor="username">
             repeat password
             <input
+              className={styles.input}
               type="password"
               name="pwd2"
               id="pwd2"
@@ -72,12 +76,13 @@ class Register extends Component {
             />
           </label>
           <input
+            className={styles.button}
             type="submit"
             value="register"
             disabled={pwd && pwd !== pwd2}
           />
         </form>
-      </>
+      </div>
     );
   }
 }

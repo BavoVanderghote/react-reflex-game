@@ -2,6 +2,7 @@ import React from "react";
 import { inject } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import { ROUTES } from "../../constants";
+import styles from "./Login.module.css";
 
 const Login = ({ uiStore, history }) => {
   const emailInput = React.createRef();
@@ -15,20 +16,32 @@ const Login = ({ uiStore, history }) => {
   };
 
   return (
-    <>
-      <h2>Sign in</h2>
+    <div className={styles.container}>
+      <h2 className={styles.label}>Login, human.</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
+        <label className={styles.formLabel} htmlFor="email">
           email
-          <input type="email" name="email" id="email=" ref={emailInput} />
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            id="email="
+            ref={emailInput}
+          />
         </label>
-        <label htmlFor="username">
+        <label className={styles.formLabel} htmlFor="username">
           password
-          <input type="password" name="password" id="password" ref={pwdInput} />
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            id="password"
+            ref={pwdInput}
+          />
         </label>
-        <input type="submit" value="Login" />
+        <input className={styles.button} type="submit" value="Login" />
       </form>
-    </>
+    </div>
   );
 };
 
