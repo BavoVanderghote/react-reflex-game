@@ -6,3 +6,7 @@
   composes: banner from "../styles/typo.module.css";
   padding-bottom: 1rem;
 }
+
+.titleInset {
+  font-size: 3rem;
+}
