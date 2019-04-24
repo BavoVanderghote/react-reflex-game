@@ -1,10 +1,10 @@
 import React from "react";
-// import styles from "./LeaderboardList.module.css";
+import styles from "./LeaderboardList.module.css";
 import { inject, observer } from "mobx-react";
 import ListItem from "./ListItem";
 
-const LeaderboardList = ({ store }) => {
-  const { scores } = store;
+const LeaderboardList = ({ gameStore }) => {
+  const { scores } = gameStore;
 
   return (
     <>
@@ -14,16 +14,16 @@ const LeaderboardList = ({ store }) => {
             <ListItem
               key={score.id}
               score={score}
-              onRematch={store.rematch}
-              onDelete={store.deleteScore}
+              onRematch={gameStore.rematch}
+              onDelete={gameStore.deleteScore}
             />
           ))}
         </ul>
       ) : (
-        <p>No scores yet, play a game!</p>
+        <p className={styles.empty}>No scores yet, play a game!</p>
       )}
     </>
   );
 };
 
-export default inject("store")(observer(LeaderboardList));
+export default inject("gameStore")(observer(LeaderboardList));

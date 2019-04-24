@@ -3,13 +3,20 @@ import styles from "./Player.module.css";
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 
-const Player = ({ store, number, button, setNameFunction, ready, name }) => {
+const Player = ({
+  gameStore,
+  number,
+  button,
+  setNameFunction,
+  ready,
+  name
+}) => {
   const playerInput = React.createRef();
 
   const handleSubmit = e => {
     e.preventDefault();
     setNameFunction(playerInput.current.value);
-    store.checkForStartGame();
+    gameStore.checkForStartGame();
   };
 
   if (ready) {
@@ -59,4 +66,4 @@ Player.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default inject("store")(observer(Player));
+export default inject("gameStore")(observer(Player));

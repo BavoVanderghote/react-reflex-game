@@ -2,8 +2,13 @@ import React from "react";
 import styles from "./StartSequence.module.css";
 import { inject, observer } from "mobx-react";
 
-const StartSequence = ({ store }) => {
-  if (store.ready && !store.set && !store.go && !store.timerIsOn) {
+const StartSequence = ({ gameStore }) => {
+  if (
+    gameStore.ready &&
+    !gameStore.set &&
+    !gameStore.go &&
+    !gameStore.timerIsOn
+  ) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.red}>
@@ -17,7 +22,12 @@ const StartSequence = ({ store }) => {
         </div>
       </div>
     );
-  } else if (store.ready && store.set && !store.go && !store.timerIsOn) {
+  } else if (
+    gameStore.ready &&
+    gameStore.set &&
+    !gameStore.go &&
+    !gameStore.timerIsOn
+  ) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.red}>
@@ -31,7 +41,12 @@ const StartSequence = ({ store }) => {
         </div>
       </div>
     );
-  } else if (store.ready && store.set && store.go && store.timerIsOn) {
+  } else if (
+    gameStore.ready &&
+    gameStore.set &&
+    gameStore.go &&
+    gameStore.timerIsOn
+  ) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.green}>
@@ -62,4 +77,4 @@ const StartSequence = ({ store }) => {
   }
 };
 
-export default inject("store")(observer(StartSequence));
+export default inject("gameStore")(observer(StartSequence));

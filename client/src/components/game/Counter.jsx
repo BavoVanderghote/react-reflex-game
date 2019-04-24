@@ -8,7 +8,7 @@ class Counter extends Component {
     this.keyDownFunction = this.keyDownFunction.bind(this);
   }
   render() {
-    if (this.props.store.timerIsOn) {
+    if (this.props.gameStore.timerIsOn) {
       return (
         <div className={styles.container}>
           <p className={styles.counter}>{this.props.playerTime}</p>
@@ -29,7 +29,7 @@ class Counter extends Component {
       //q
       console.log(`${key} pressed by player ${player}`);
 
-      this.props.store.endTimer(key, parseInt(player));
+      this.props.gameStore.endTimer(key, parseInt(player));
     }
   }
   componentDidMount() {
@@ -45,7 +45,6 @@ class Counter extends Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", this.keyDownFunction, false);
   }
-  sendDataToStore = (key, player) => {};
 }
 
 Counter.propTypes = {
@@ -54,4 +53,4 @@ Counter.propTypes = {
   player: PropTypes.string.isRequired
 };
 
-export default inject("store")(observer(Counter));
+export default inject("gameStore")(observer(Counter));
