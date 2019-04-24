@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const ObjectId = mongoose.Schema.Types.ObjectId;
+const mongoose = require('mongoose');
+// const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const ScoreSchema = mongoose.Schema(
   {
@@ -13,4 +13,4 @@ const ScoreSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Score", ScoreSchema);
+module.exports = mongoose.model('Score', ScoreSchema);
