@@ -5,6 +5,7 @@ import Api from "../api";
 configure({ enforceActions: "observed" });
 
 class Store {
+  // GAME VARIABLES
   start;
   interval;
   p1Name = ``;
@@ -23,8 +24,6 @@ class Store {
   winner = {};
   loser = {};
 
-  scoreToUpdate = {};
-
   ready = false;
   set = false;
   go = false;
@@ -32,16 +31,16 @@ class Store {
   setSetTimeout;
   startTimeout;
 
+  // CRUD VARIABLES
+  scoreToUpdate = {};
+
+  // LEADERBOARD
   scores = [];
 
   constructor() {
     this.api = new Api("score");
     this.getAll();
   }
-
-  getAll = () => {
-    this.api.getAll().then(d => d.forEach(this._addScore));
-  };
 
   //GAME
 
@@ -77,13 +76,6 @@ class Store {
     this.ready = false;
     this.set = false;
     this.go = false;
-    // console.log(
-    //   `timer ${this.timerIsOn} ready ${this.ready} set ${this.set} go ${
-    //     this.go
-    //   }`
-    // );
-
-    console.log(`ready`);
 
     this.ready = true;
     this.setSetTimeout = setTimeout(this.setSet, 1000);
@@ -94,13 +86,10 @@ class Store {
   };
 
   setSet = () => {
-    console.log(`set`);
     this.set = true;
   };
 
   startTimer = () => {
-    console.log(`start game`);
-
     if (!this.timerIsOn) {
       this.go = true;
       this.timerIsOn = true;
@@ -113,8 +102,6 @@ class Store {
   };
 
   setP1 = () => {
-    // console.log(this.p1);
-
     this.p1 = (Date.now() - this.start) / 1000;
   };
 
@@ -145,8 +132,6 @@ class Store {
   };
 
   setP2 = () => {
-    // console.log(this.p2);
-
     this.p2 = (Date.now() - this.start) / 1000;
   };
 
@@ -178,7 +163,7 @@ class Store {
     } else if (this.gameIsStarted && !this.timerIsOn) {
       console.log(`player ${player} pressed too early`);
       player === 1 ? (this.p1 = `Too early`) : (this.p2 = `Too early`);
-      //pressed too early code
+      // player pressed too early
       this.restartGame();
     }
     if (this.p1Finished && this.p2Finished && this.timerIsOn) {
@@ -193,26 +178,10 @@ class Store {
       console.log(`[loser] ${this.loser.name} took ${this.loser.time} seconds`);
 
       if (Object.entries(this.scoreToUpdate).length !== 0) {
-        console.log(
-          `score updaten: meegekregen loser = ${
-            this.loser.name
-          }, oorspronkelijke loser = ${this.scoreToUpdate.loser}`
-        );
-        // console.log(`score to update updaten`);
         this.scoreToUpdate.loser = this.loser.name;
         this.scoreToUpdate.winnerTime = this.winner.time;
         this.scoreToUpdate.loserTime = this.loser.time;
         this.scoreToUpdate.winner = this.winner.name;
-        // console.log(
-        //   `oorspronkelijke naam van de winner = ${
-        //     this.winner.name
-        //   }, current winner = ${this.scoreToUpdate.winner}`
-        // );
-        // console.log(
-        //   `oorspronkelijke naam van de loser = ${
-        //     this.loser.name
-        //   }, current loser = ${this.scoreToUpdate.loser}`
-        // );
 
         this.updateScore(this.scoreToUpdate);
       } else {
@@ -238,27 +207,15 @@ class Store {
     this.p2Ready = false;
 
     this.scoreToUpdate = score;
-    // console.log(this.scoreToUpdate);
-
-    // console.log(this.scores.find(this.exists));
-    // this.restartGame();
   };
 
-  exists = score => {
-    return score.winner === this.p1Name && score.loser === this.p2Name;
-  };
+  //API
 
-  //APi
+  getAll = () => {
+    this.api.getAll().then(d => d.forEach(this._addScore));
+  };
 
   addScore = data => {
-    // console.log(`addScore`);
-    // console.log(
-    //   data.winner.name,
-    //   data.winner.time,
-    //   data.loser.name,
-    //   data.loser.time
-    // );
-
     const newScore = new Score(
       data.winner.name,
       data.loser.name,
@@ -266,15 +223,10 @@ class Store {
       data.loser.time
     );
 
-    // console.log(newScore.values);
-    // const newScore = new Score();
-    // newScore.updateFromServer(data);
-
     this.scores.push(newScore);
 
     this.api.create(newScore).then(scoreValues => {
       newScore.updateFromServer(scoreValues);
-      // console.log(newScore);
     });
   };
 
@@ -295,34 +247,20 @@ class Store {
   };
 
   updateScore = score => {
-    console.log(`UPDATE SCORE`);
-    console.log(score.loser);
-
     this.api.update(score).then(scoreValues => {
       score.updateFromServer(scoreValues);
-      console.log(scoreValues.loser);
     });
   };
 }
 
 decorate(Store, {
-  start: observable,
-  interval: observable,
   p1Name: observable,
   p2Name: observable,
   p1Ready: observable,
   p2Ready: observable,
   p1: observable,
   p2: observable,
-  p1Interval: observable,
-  p2Interval: observable,
-  p1Finished: observable,
-  p2Finished: observable,
-  timer: observable,
   timerIsOn: observable,
-  gameIsStarted: observable,
-  winner: observable,
-  loser: observable,
   ready: observable,
   set: observable,
   go: observable,
