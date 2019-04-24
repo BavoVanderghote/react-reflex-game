@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ListItem.module.css";
-import { observer, inject } from "mobx-react";
+import PropTypes from "prop-types";
 
 const ListItem = ({ score, onDelete, onRematch }) => {
   // console.log(score);
@@ -24,4 +24,13 @@ const ListItem = ({ score, onDelete, onRematch }) => {
     </div>
   );
 };
-export default inject("store")(observer(ListItem));
+
+ListItem.propTypes = {
+  listItem: PropTypes.shape({
+    score: PropTypes.object.isRequired
+  }),
+  onDelete: PropTypes.func,
+  onRematch: PropTypes.func
+};
+
+export default ListItem;

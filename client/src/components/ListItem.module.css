@@ -33,7 +33,6 @@
 
 .container {
   width: 97.4rem;
-  height: 10.7rem;
   display: grid;
   grid-template-columns:  2fr 1fr 1fr;
   padding: 1.8rem 3rem;
