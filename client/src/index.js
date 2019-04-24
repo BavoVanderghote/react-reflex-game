@@ -5,12 +5,12 @@ import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/index.css";
 
-import store from "./store/index";
+import store from "./store";
 import { Provider } from "mobx-react";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider {...store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
