@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Player.module.css";
 import { inject, observer } from "mobx-react";
+import PropTypes from "prop-types";
 
 const Player = ({ store, number, button, setNameFunction, ready, name }) => {
   const playerInput = React.createRef();
@@ -48,6 +49,14 @@ const Player = ({ store, number, button, setNameFunction, ready, name }) => {
       </form>
     );
   }
+};
+
+Player.propTypes = {
+  setNameFunction: PropTypes.func.isRequired,
+  ready: PropTypes.bool.isRequired,
+  number: PropTypes.number.isRequired,
+  button: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default inject("store")(observer(Player));

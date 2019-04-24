@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./Counter.module.css";
 import { inject, observer } from "mobx-react";
-
+import PropTypes from "prop-types";
 class Counter extends Component {
   constructor(props) {
     super(props);
@@ -47,5 +47,11 @@ class Counter extends Component {
   }
   sendDataToStore = (key, player) => {};
 }
+
+Counter.propTypes = {
+  playerTime: PropTypes.number.isRequired,
+  keyCode: PropTypes.number.isRequired,
+  player: PropTypes.number.isRequired
+};
 
 export default inject("store")(observer(Counter));
