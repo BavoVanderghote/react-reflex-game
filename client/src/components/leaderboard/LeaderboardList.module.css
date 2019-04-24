@@ -1,0 +1,4 @@
+.empty {
+  composes: user-input from "../../styles/typo.module.css";
+  padding-bottom: .2rem;
+}
