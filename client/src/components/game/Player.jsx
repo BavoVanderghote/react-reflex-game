@@ -54,7 +54,7 @@ const Player = ({ store, number, button, setNameFunction, ready, name }) => {
 Player.propTypes = {
   setNameFunction: PropTypes.func.isRequired,
   ready: PropTypes.bool.isRequired,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 };

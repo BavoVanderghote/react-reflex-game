@@ -50,8 +50,8 @@ class Counter extends Component {
 
 Counter.propTypes = {
   playerTime: PropTypes.number.isRequired,
-  keyCode: PropTypes.number.isRequired,
-  player: PropTypes.number.isRequired
+  keyCode: PropTypes.string.isRequired,
+  player: PropTypes.string.isRequired
 };
 
 export default inject("store")(observer(Counter));

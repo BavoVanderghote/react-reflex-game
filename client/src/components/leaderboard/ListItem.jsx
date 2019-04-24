@@ -26,17 +26,7 @@ const ListItem = ({ score, onDelete, onRematch }) => {
 };
 
 ListItem.propTypes = {
-  score: PropTypes.shape({
-    score: PropTypes.object.isRequired,
-    _id: PropTypes.string.isRequired,
-    winner: PropTypes.string.isRequired,
-    winnerTime: PropTypes.number.isRequired,
-    loser: PropTypes.string.isRequired,
-    loserTime: PropTypes.number.isRequired,
-    createdAt: PropTypes.string,
-    updatedAt: PropTypes.string,
-    __v: PropTypes.number
-  }),
+  score: PropTypes.object.isRequired,
   onDelete: PropTypes.func,
   onRematch: PropTypes.func
 };
