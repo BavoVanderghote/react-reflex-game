@@ -7,35 +7,35 @@ import StartSequence from "../components/game/StartSequence";
 import Counter from "../components/game/Counter";
 import Navigation from "../components/navigation/Navigation";
 
-const Game = ({ store }) => {
+const Game = ({ gameStore }) => {
   return (
     <>
       <div className={styles.wrapper}>
         <Player
-          setNameFunction={store.setP1Name}
-          ready={store.p1Ready}
+          setNameFunction={gameStore.setP1Name}
+          ready={gameStore.p1Ready}
           number="1"
           button="Q"
-          name={store.p1Name}
+          name={gameStore.p1Name}
         />
         <Player
-          setNameFunction={store.setP2Name}
-          ready={store.p2Ready}
+          setNameFunction={gameStore.setP2Name}
+          ready={gameStore.p2Ready}
           number="2"
           button="M"
-          name={store.p2Name}
+          name={gameStore.p2Name}
         />
       </div>
       <div className={styles.sequence}>
         <StartSequence />
       </div>
       <div className={styles.wrapper}>
-        <Counter playerTime={store.p1} keyCode="81" player="1" />
-        <Counter playerTime={store.p2} keyCode="77" player="2" />
+        <Counter playerTime={gameStore.p1} keyCode="81" player="1" />
+        <Counter playerTime={gameStore.p2} keyCode="77" player="2" />
       </div>
       <Navigation />
     </>
   );
 };
 
-export default inject("store")(observer(Game));
+export default inject("gameStore")(observer(Game));
