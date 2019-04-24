@@ -7,7 +7,7 @@ const Navigation = () => {
     <div className={styles.wrapper}>
       <p className={styles.credit}>&copy; Bavo Vanderghote 2019</p>
       <div>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/game">
           game
         </Link>
         <Link className={styles.link} to="/leaderboard">
