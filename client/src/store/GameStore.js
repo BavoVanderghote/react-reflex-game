@@ -220,13 +220,6 @@ class GameStore {
   addScore = data => {
     const newScore = new Score();
     newScore.updateFromServer(this.score);
-
-    // const newScore = new Score(
-    //   data.winner.name,
-    //   data.loser.name,
-    //   data.winner.time,
-    //   data.loser.time
-    // );
     this.scores.unshift(newScore);
     this.api.create(newScore).then(scoreValues => {
       newScore.updateFromServer(scoreValues);
