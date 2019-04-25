@@ -26,7 +26,7 @@ class UiStore {
       });
   };
 
-  register = (name, email, pwd) => this.authService.register(name, email, pwd);
+  register = (email, pwd, name) => this.authService.register(email, pwd, name);
 
   logout = () => {
     this.authService.logout().then(() => this.setUser(null));
