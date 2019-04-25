@@ -19,7 +19,7 @@ const Login = ({ uiStore, history }) => {
   return (
     <>
       <div className={styles.container}>
-        <h2 className={styles.label}>Login, human.</h2>
+        <h2 className={styles.label}>I've been here before.</h2>
         <form onSubmit={handleSubmit}>
           <label className={styles.formLabel} htmlFor="email">
             email

@@ -31,7 +31,7 @@ class Register extends Component {
     return (
       <>
         <div className={styles.container}>
-          <h2 className={styles.label}>first time, human.</h2>
+          <h2 className={styles.label}>It's my first time here.</h2>
           <form onSubmit={this.handleSubmit}>
             <label className={styles.formLabel} htmlFor="email">
               name
