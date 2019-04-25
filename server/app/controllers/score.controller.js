@@ -31,7 +31,7 @@ exports.create = (req, res) => {
 
 exports.findAll = async (req, res) => {
   try {
-    const scores = await Score.find();
+    const scores = await Score.find().sort({updatedAt: - 1});
     res.send(scores);
   } catch (err) {
     res.status(500).send({err: err.score || 'Error'});
