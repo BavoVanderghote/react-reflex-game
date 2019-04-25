@@ -21,8 +21,7 @@ class GameStore {
 
   timerIsOn = false;
   gameIsStarted = false;
-  winner = {};
-  loser = {};
+  score = {};
 
   ready = false;
   set = false;
@@ -144,22 +143,22 @@ class GameStore {
       this.p1Finished = true;
 
       if (!this.p2Finished) {
-        this.winner.name = this.p1Name;
-        this.winner.time = this.p1;
+        this.score.winner = this.p1Name;
+        this.score.winnerTime = this.p1;
       } else {
-        this.loser.name = this.p1Name;
-        this.loser.time = this.p1;
+        this.score.loser = this.p1Name;
+        this.score.loserTime = this.p1;
       }
     } else if (player === 2 && this.timerIsOn) {
       clearInterval(this.p2Interval);
       this.p2Finished = true;
 
       if (!this.p1Finished) {
-        this.winner.name = this.p2Name;
-        this.winner.time = this.p2;
+        this.score.winner = this.p2Name;
+        this.score.winnerTime = this.p2;
       } else {
-        this.loser.name = this.p2Name;
-        this.loser.time = this.p2;
+        this.score.loser = this.p2Name;
+        this.score.loserTime = this.p2;
       }
     } else if (this.gameIsStarted && !this.timerIsOn) {
       console.log(`player ${player} pressed too early`);
@@ -174,15 +173,17 @@ class GameStore {
       this.p2Ready = false;
 
       console.log(
-        `[winner] ${this.winner.name} took ${this.winner.time} seconds`
+        `[winner] ${this.score.winner} took ${this.score.winnerTime} seconds`
       );
-      console.log(`[loser] ${this.loser.name} took ${this.loser.time} seconds`);
+      console.log(
+        `[loser] ${this.score.loser} took ${this.score.loserTime} seconds`
+      );
 
       if (Object.entries(this.scoreToUpdate).length !== 0) {
-        this.scoreToUpdate.loser = this.loser.name;
-        this.scoreToUpdate.winnerTime = this.winner.time;
-        this.scoreToUpdate.loserTime = this.loser.time;
-        this.scoreToUpdate.winner = this.winner.name;
+        this.scoreToUpdate.loser = this.score.loser;
+        this.scoreToUpdate.winnerTime = this.score.winnerTime;
+        this.scoreToUpdate.loserTime = this.score.loserTime;
+        this.scoreToUpdate.winner = this.score.winner;
 
         this.updateScore(this.scoreToUpdate);
       } else {
@@ -217,29 +218,25 @@ class GameStore {
   };
 
   addScore = data => {
-    const newScore = new Score(
-      data.winner.name,
-      data.loser.name,
-      data.winner.time,
-      data.loser.time
-    );
+    const newScore = new Score();
+    newScore.updateFromServer(this.score);
 
-    this.scores.push(newScore);
-
+    // const newScore = new Score(
+    //   data.winner.name,
+    //   data.loser.name,
+    //   data.winner.time,
+    //   data.loser.time
+    // );
+    this.scores.unshift(newScore);
     this.api.create(newScore).then(scoreValues => {
       newScore.updateFromServer(scoreValues);
     });
   };
 
   _addScore = values => {
-    const score = new Score(
-      values.winner,
-      values.loser,
-      values.winnerTime,
-      values.loserTime,
-      values._id
-    );
-    runInAction(() => this.scores.push(score));
+    const newScore = new Score();
+    newScore.updateFromServer(values);
+    runInAction(() => this.scores.push(newScore));
   };
 
   deleteScore = score => {
