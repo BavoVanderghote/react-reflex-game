@@ -18,7 +18,8 @@ exports.create = (req, res) => {
     winner: req.body.winner,
     winnerTime: req.body.winnerTime,
     loser: req.body.loser,
-    loserTime: req.body.loserTime
+    loserTime: req.body.loserTime,
+    userId: req.authUserId
   });
 
   score
@@ -31,7 +32,9 @@ exports.create = (req, res) => {
 
 exports.findAll = async (req, res) => {
   try {
-    const scores = await Score.find().sort({updatedAt: - 1});
+    const scores = await Score.find({userId: req.authUserId}).sort({
+      updatedAt: - 1
+    });
     res.send(scores);
   } catch (err) {
     res.status(500).send({err: err.score || 'Error'});
@@ -41,8 +44,8 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
   try {
     const score = await Score.findOne({
-      _id: req.params.scoreId
-      // userId: req.authUserId
+      _id: req.params.scoreId,
+      userId: req.authUserId
     });
     if (score) {
       res.send(score);
@@ -74,8 +77,8 @@ exports.update = async (req, res) => {
   try {
     const score = await Score.findOneAndUpdate(
       {
-        _id: req.params.scoreId
-        // userId: req.authUserId
+        _id: req.params.scoreId,
+        userId: req.authUserId
       },
       {
         winner: req.body.winner,
@@ -103,8 +106,8 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const score = await Score.findOneAndRemove({
-      _id: req.params.scoreId
-      // userId: req.authUserId
+      _id: req.params.scoreId,
+      userId: req.authUserId
     });
     if (!score) {
       return res.status(404).send('No score found');

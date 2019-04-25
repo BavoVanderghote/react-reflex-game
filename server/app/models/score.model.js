@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
-// const ObjectId = mongoose.Schema.Types.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const ScoreSchema = mongoose.Schema(
   {
     winner: String,
     winnerTime: Number,
     loser: String,
-    loserTime: Number
+    loserTime: Number,
+    userId: ObjectId
   },
   {
     timestamps: true
