@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
+import { inject } from "mobx-react";
 
-const Navigation = () => {
+const Navigation = ({ uiStore }) => {
+  // const handleClickLogout = () => {
+  //   uiStore.logout();
+  //   history.push(ROUTES.landing);
+  // };
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.credit}>&copy; Bavo Vanderghote 2019</p>
-      <div>
+      <div className={styles.linkWrapper}>
         <Link className={styles.link} to="/game">
           game
         </Link>
@@ -14,8 +20,11 @@ const Navigation = () => {
           leaderboard
         </Link>
       </div>
+      <button className={styles.logout} onClick={uiStore.logout}>
+        Logout
+      </button>
     </div>
   );
 };
 
-export default Navigation;
+export default inject("uiStore")(Navigation);
