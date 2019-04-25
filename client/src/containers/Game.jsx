@@ -7,6 +7,8 @@ import StartSequence from "../components/game/StartSequence";
 import Counter from "../components/game/Counter";
 import Navigation from "../components/navigation/Navigation";
 
+import withAuthentication from "../components/auth/WithAuthentication";
+
 const Game = ({ gameStore }) => {
   return (
     <>
@@ -38,4 +40,4 @@ const Game = ({ gameStore }) => {
   );
 };
 
-export default inject("gameStore")(observer(Game));
+export default inject("gameStore")(withAuthentication(observer(Game)));

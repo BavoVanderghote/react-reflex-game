@@ -4,6 +4,8 @@ import styles from "./Leaderboard.module.css";
 import LeaderboardList from "../components/leaderboard/LeaderboardList";
 import Navigation from "../components/navigation/Navigation";
 
+import withAuthentication from "../components/auth/WithAuthentication";
+
 const Leaderboard = () => {
   return (
     <>
@@ -18,4 +20,4 @@ const Leaderboard = () => {
   );
 };
 
-export default Leaderboard;
+export default withAuthentication(Leaderboard);
