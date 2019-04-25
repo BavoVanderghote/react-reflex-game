@@ -21,7 +21,7 @@ class Register extends Component {
     e.preventDefault();
     const { uiStore, history } = this.props;
     const { email, pwd, name } = this.state;
-    uiStore.register(name, email, pwd).then(() => {
+    uiStore.register(email, pwd, name).then(() => {
       history.push(ROUTES.login);
     });
   };
