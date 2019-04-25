@@ -47,3 +47,10 @@
 
   margin-top: 18rem;
 }
+
+.redirect {
+  text-decoration: none;
+  composes: xxs from "../../styles/typo.module.css";
+  padding-top: 1rem;
+  text-align: right;
+}
