@@ -1,4 +1,11 @@
-import { decorate, configure, observable, action, runInAction } from "mobx";
+import {
+  decorate,
+  configure,
+  observable,
+  action,
+  runInAction,
+  observe
+} from "mobx";
 import Score from "../models/Score";
 import Api from "../api";
 
@@ -42,6 +49,13 @@ class GameStore {
     if (this.rootStore.uiStore.authUser) {
       this.getAll();
     }
+    observe(this.rootStore.uiStore, "authUser", change => {
+      if (change.newValue) {
+        this.getAll();
+      } else {
+        runInAction(() => (this.scores = []));
+      }
+    });
   }
 
   //GAME
