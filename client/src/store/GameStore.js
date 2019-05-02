@@ -12,11 +12,27 @@ import Api from "../api";
 configure({ enforceActions: "observed" });
 
 class GameStore {
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+    this.api = new Api("score");
+    this.username = this.rootStore.uiStore.authUser.name;
+    if (this.rootStore.uiStore.authUser) {
+      this.getAll();
+    }
+    observe(this.rootStore.uiStore, "authUser", change => {
+      if (change.newValue) {
+        this.getAll();
+      } else {
+        runInAction(() => (this.scores = []));
+      }
+    });
+  }
+
   // GAME VARIABLES
   start;
   interval;
   p1Name = ``;
-  p2Name = ``;
+  p2Name = `challenger`;
   p1Ready = false;
   p2Ready = false;
   p1 = 0;
@@ -42,21 +58,6 @@ class GameStore {
 
   // LEADERBOARD
   scores = [];
-
-  constructor(rootStore) {
-    this.rootStore = rootStore;
-    this.api = new Api("score");
-    if (this.rootStore.uiStore.authUser) {
-      this.getAll();
-    }
-    observe(this.rootStore.uiStore, "authUser", change => {
-      if (change.newValue) {
-        this.getAll();
-      } else {
-        runInAction(() => (this.scores = []));
-      }
-    });
-  }
 
   //GAME
 
