@@ -27,8 +27,17 @@
 }
 
 .logout {
-  composes: xs from "../../styles/typo.module.css";
+  composes: xs-bold from "../../styles/typo.module.css";
   background-color: transparent;
   border: 0;
+}
+
+.logoutWrapper {
   justify-self: end;
+  display: flex;
+  align-items: baseline;
+}
+
+.username {
+  composes: xs from "../../styles/typo.module.css";
 }

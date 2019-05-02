@@ -20,9 +20,12 @@ const Navigation = ({ uiStore }) => {
           leaderboard
         </Link>
       </div>
-      <button className={styles.logout} onClick={uiStore.logout}>
-        Logout
-      </button>
+      <div className={styles.logoutWrapper}>
+        <p className={styles.username}>Ingelogd als {uiStore.authUser.name}</p>
+        <button className={styles.logout} onClick={uiStore.logout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
