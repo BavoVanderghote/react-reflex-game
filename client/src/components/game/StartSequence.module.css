@@ -1,0 +1,58 @@
+.base {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+  text-align: center;
+  display: grid;
+  place-items: center;
+
+  composes: button from "../../styles/typo.module.css";
+
+  background-color: var(--dark-color);
+}
+
+.ready {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+
+  composes: button from "../../styles/typo.module.css";
+
+  background-color: var(--primary-color);
+}
+
+.wrapper {
+  display: flex;
+  width: 55rem;
+  justify-content: space-between;
+}
+
+.red {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+
+  composes: button from "../../styles/typo.module.css";
+
+  background-color: var(--red-color);
+}
+
+.green {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+
+  composes: button from "../../styles/typo.module.css";
+
+  background-color: var(--green-color);
+}

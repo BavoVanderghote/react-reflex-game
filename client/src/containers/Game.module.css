@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5rem 10rem 0 10rem;
+}
+
+.sequence {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}

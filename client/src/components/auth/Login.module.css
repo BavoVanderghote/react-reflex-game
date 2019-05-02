@@ -1,0 +1,56 @@
+.button {
+  background-color: var(--darker-color);
+  padding: 1rem 6rem;
+  composes: title from "../../styles/typo.module.css";
+  text-decoration: none;
+  border-radius: 1rem;
+  border: 0;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+}
+
+.label {
+  composes: user-input from "../../styles/typo.module.css";
+}
+
+.formLabel {
+  display: flex;
+  flex-flow: column;
+  composes: form-label from "../../styles/typo.module.css";
+  width: 30rem;
+  padding-bottom: 2rem;
+}
+
+.input {
+  font-size: 1.6rem;
+  border: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: .8rem;
+}
+
+.container {
+  width: 40rem;
+  height: 50%;
+
+  background-color: var(--dark-color);
+  border-radius: 1rem;
+
+  display: grid;
+  grid-gap: 3rem;
+  place-content: center;
+
+  margin-top: 18rem;
+}
+
+.redirect {
+  text-decoration: none;
+  composes: xxs from "../../styles/typo.module.css";
+  padding-top: 1rem;
+  text-align: right;
+}

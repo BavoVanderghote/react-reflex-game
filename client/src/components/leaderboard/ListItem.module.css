@@ -1,0 +1,48 @@
+.winner {
+  display: flex;
+  justify-content: space-between;
+  composes: lg from "../../styles/typo.module.css";
+  grid-area: winner;
+}
+
+.loser {
+  display: flex;
+  justify-content: space-between;
+  composes: sm from "../../styles/typo.module.css";
+  grid-area: loser;
+}
+
+.delete {
+  border: 0;
+  background: 0;
+  composes: md from "../../styles/typo.module.css";
+  padding: 0;
+  grid-area: delete;
+}
+
+.rematch {
+  border: 0;
+  composes: md from "../../styles/typo.module.css";
+  width: 18.6rem;
+  height: 4.2rem;
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+  composes: color-dark from "../../styles/colors.module.css";
+  grid-area: rematch;
+}
+
+.container {
+  width: 97.4rem;
+  display: grid;
+  grid-template-columns:  2fr 1fr 1fr;
+  padding: 1.8rem 3rem;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+  'winner delete rematch'
+  'loser delete rematch';
+  grid-gap: 3rem;
+  align-items: center;
+  background-color: var(--dark-color);
+  border-radius: 1rem;
+  margin: 2rem 0;
+}

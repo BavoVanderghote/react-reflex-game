@@ -1,0 +1,48 @@
+.layout {
+  composes: layout from "../styles/layout.module.css";
+}
+
+.title {
+  composes: banner from "../styles/typo.module.css";
+  padding-bottom: 1rem;
+}
+
+.titleInset {
+  font-size: 3rem;
+}
+
+.link {
+  background-color: var(--dark-color);
+  padding: 1rem 6rem;
+  composes: title from "../styles/typo.module.css";
+  text-decoration: none;
+  border-radius: 1rem;
+}
+
+.link:hover {
+  background-color: var(--darker-color);
+}
+
+.label {
+  composes: user-input from "../styles/typo.module.css";
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  display: grid;
+  grid-gap: 3rem;
+  place-content: center;
+}
+
+.listContainer {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  display: grid;
+  grid-gap: 4rem;
+  place-content: center;
+}

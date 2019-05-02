@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
+import "./styles/index.css";
 
-import store from "./store/Store";
+import store from "./store";
 import { Provider } from "mobx-react";
 import { BrowserRouter } from "react-router-dom";
 
