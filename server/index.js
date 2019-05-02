@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+
+// const cors = require("cors");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
@@ -20,9 +21,9 @@ mongoose
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../clsient/build')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.use(cors());
+// app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -30,12 +31,12 @@ app.use(bodyParser.json());
 require('./app/routes/auth.routes.js')(app);
 require('./app/routes/score.routes.js')(app);
 
-app.get('/api/data', (req, res) => {
-  res.send({message: 'ok', secret: process.env.SECRET});
-});
-
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
+
+app.get('/api/data', (req, res) => {
+  res.send({message: 'ok', secret: process.env.SECRET});
 });
 
 app.listen(process.env.PORT, () => {
