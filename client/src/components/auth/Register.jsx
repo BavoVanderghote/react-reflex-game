@@ -22,7 +22,7 @@ class Register extends Component {
     const { uiStore, history } = this.props;
     const { email, pwd, name } = this.state;
     uiStore.register(email, pwd, name).then(() => {
-      history.push(ROUTES.login);
+      history.push(ROUTES.landing);
     });
   };
 
