@@ -15,7 +15,7 @@ class GameStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.api = new Api("score");
-    this.username = this.rootStore.uiStore.authUser.name;
+    // this.username = this.rootStore.uiStore.authUser.name;
     if (this.rootStore.uiStore.authUser) {
       this.getAll();
     }
@@ -31,7 +31,7 @@ class GameStore {
   // GAME VARIABLES
   start;
   interval;
-  p1Name = ``;
+  p1Name = `Player`;
   p2Name = `challenger`;
   p1Ready = false;
   p2Ready = false;
