@@ -15,7 +15,6 @@ class GameStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.api = new Api("score");
-    // this.username = this.rootStore.uiStore.authUser.name;
     if (this.rootStore.uiStore.authUser) {
       this.getAll();
     }
