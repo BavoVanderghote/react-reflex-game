@@ -20,16 +20,16 @@ mongoose
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../clsient/build')));
 
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// app.get('/', (req, res) => {
-//   res.json({message: 'up and running'});
-// });
+app.get('/', (req, res) => {
+  res.json({message: 'up and running'});
+});
 
 app.get('/api/data', (req, res) => {
   res.send({message: 'ok', secret: process.env.SECRET});

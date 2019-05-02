@@ -1,9 +1,9 @@
 {
-  "name": "production-demo",
+  "name": "reaction-game",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:devinehowest/wad-productiondemo.git",
-  "author": "Simon Vanherweghe <simon.vanherweghe@gmail.com>",
+  "repository": "https://github.com/devinehowest/wad-opdracht-2019-BavoVanderghote",
+  "author": "Bavo Vanderghote",
   "license": "MIT",
   "scripts": {
     "start": "cd server/ && yarn && yarn start",

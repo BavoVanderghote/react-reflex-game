@@ -10,11 +10,8 @@ class Player extends Component {
   }
 
   componentDidMount() {
-    const { name, uiStore } = this.props;
-    console.log(name);
-    name === ``
-      ? this.setState({ player: uiStore.authUser.name })
-      : this.setState({ player: name });
+    const { name } = this.props;
+    this.setState({ player: name });
   }
 
   handleSubmit = e => {
@@ -85,4 +82,4 @@ Player.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default inject("gameStore", "uiStore")(observer(Player));
+export default inject("gameStore")(observer(Player));
