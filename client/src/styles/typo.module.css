@@ -56,6 +56,12 @@
   font-size: 1.6rem;
 }
 
+.xs-bold {
+  composes: color-primary from "../styles/colors.module.css";
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
 .sm {
   composes: color-primary from "../styles/colors.module.css";
   font-size: 1.8rem;
