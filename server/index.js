@@ -27,6 +27,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+require('./app/routes/auth.routes.js')(app);
+require('./app/routes/score.routes.js')(app);
+
 app.get('/api/data', (req, res) => {
   res.send({message: 'ok', secret: process.env.SECRET});
 });
@@ -34,9 +37,6 @@ app.get('/api/data', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
-
-require('./app/routes/auth.routes.js')(app);
-require('./app/routes/score.routes.js')(app);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server luistert op poort ${process.env.PORT}`);
