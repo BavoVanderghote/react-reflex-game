@@ -4,13 +4,13 @@ class Api {
   }
 
   getAll = async () => {
-    const r = await fetch(`/${this.entity}`);
+    const r = await fetch(`/api/${this.entity}`);
     return await r.json();
   };
 
   create = async entity => {
     const r = await fetch(
-      `/${this.entity}`,
+      `/api/${this.entity}`,
       this.getOptions("post", entity.values)
     );
     return await r.json();
@@ -18,7 +18,7 @@ class Api {
 
   update = async entity => {
     const r = await fetch(
-      `/${this.entity}/${entity.id}`,
+      `/api/${this.entity}/${entity.id}`,
       this.getOptions("put", entity.values)
     );
     return await r.json();
@@ -26,7 +26,7 @@ class Api {
 
   delete = async entity => {
     const r = await fetch(
-      `/${this.entity}/${entity.id}`,
+      `/api/${this.entity}/${entity.id}`,
       this.getOptions("delete")
     );
     return r.json();
