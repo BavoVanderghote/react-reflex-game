@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -19,13 +20,23 @@ mongoose
 
 const app = express();
 
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.json({message: 'up and running'});
+// app.get('/', (req, res) => {
+//   res.json({message: 'up and running'});
+// });
+
+app.get('/api/data', (req, res) => {
+  res.send({message: 'ok', secret: process.env.SECRET});
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 require('./app/routes/auth.routes.js')(app);
