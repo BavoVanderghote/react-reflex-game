@@ -1,4 +1,14 @@
 # WAD opdracht 2019
 
-## WEEK 01
-* Omschrijf jouw project in een issue, tag het met 'help wanted', wij keuren goed en/of sturen bij.
+this is a school project for Digital Design and Development at Howest Kortrijk
+
+## The game
+
+Challenge someone and see who has the quickest reflexes.
+
+## How to play
+
+1. Login
+2. Fill in your names
+3. Click ready
+4. GO!
